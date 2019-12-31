@@ -1,8 +1,3 @@
-/* 
-* Refactor all code
-* Support for english
-*/
-
 appName = "GeoQuiz!";
 
 function randomInt(max) {
@@ -32,6 +27,12 @@ class QuizApp {
         this.answerLabel.toggled = false;
         this.wrongLabel = document.getElementById("wrong-label");
         this.correctLabel = document.getElementById("correct-label");
+        this.flashcardQuestionLabel = document.getElementById("flashcards-question-label");
+
+        // Wrapper divs around labels
+        this.answerLabelWrapper = document.getElementById("answer-label-wrapper");
+        this.resultLabelWrapper = document.getElementById("result-label-wrapper");
+        this.flashcardQuestionLabelWrapper = document.getElementById("flashcards-question-label-div");
 
         // Range input
         this.maxInput = document.getElementById("max-input");
@@ -46,12 +47,8 @@ class QuizApp {
         this.flagFileNames = this.getFlagFileNames();
         this.isFlagQuiz = false;
 
-        // Misc.
-        this.answerLabelWrapper = document.getElementById("answer-label-wrapper");
-        this.resultLabelWrapper = document.getElementById("result-label-wrapper");
-        this.flashcardsRadio = document.getElementById("flashcards-radio");
-        this.flashcardsQuestionLabelDiv = document.getElementById("flashcards-question-label-div");
-        this.flashcardsQuestionLabel = document.getElementById("flashcards-question-label");
+        // Radio buttons
+        this.flashcardRadio = document.getElementById("flashcards-radio");
     }
 
     getFlagFileNames() {
@@ -84,7 +81,7 @@ class QuizApp {
 
     capitalsButtonCallback(button) {
         let quizScreen = this.quizScreen;
-        if (this.flashcardsRadio.checked) {
+        if (this.flashcardRadio.checked) {
             this.isFlashcardQuiz = true;
             quizScreen = this.flashcardScreen; 
         }
@@ -113,7 +110,7 @@ class QuizApp {
             alert("Inga huvudstäder funna, välj ett annat intervall.") 
         else {
             let quizScreen = this.quizScreen;
-            if (this.flashcardsRadio.checked) {
+            if (this.flashcardRadio.checked) {
                 this.isFlashcardQuiz = true;
                 quizScreen = this.flashcardScreen; 
             }
@@ -229,11 +226,11 @@ class QuizApp {
         if (this.isFlagQuiz) {
             this.flagImg.src = this.quiz.currentQuestion;
             this.flagImg.style.display = "block";
-            this.flashcardsQuestionLabelDiv.style.display = "none";
+            this.flashcardQuestionLabelWrapper.style.display = "none";
         }
         else if (this.isFlashcardQuiz) {
-            this.flashcardsQuestionLabel.textContent = this.quiz.currentQuestion;
-            this.flashcardsQuestionLabelDiv.style.display = "block";
+            this.flashcardQuestionLabel.textContent = this.quiz.currentQuestion;
+            this.flashcardQuestionLabelWrapper.style.display = "block";
             this.flagImg.style.display = "none";
         }
         else {
@@ -256,11 +253,10 @@ class QuizApp {
             this.resultLabelWrapper.style.padding = "10px";
         }
         else {
-            this.resultLabelWrapper.classList.add("red-box");
+            this.resultLabel.textContent = solution;
             this.resultLabelWrapper.classList.remove("green-box");
             this.resultLabelWrapper.classList.add("red-box");
             this.resultLabelWrapper.style.padding = "10px";
-            this.resultLabel.textContent = solution;
         }
 
         this.updateQuizScreen();

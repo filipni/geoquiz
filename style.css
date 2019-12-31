@@ -4,14 +4,18 @@ body {
     font-family: "Robot", sans-serif;
 }
 
-h1 {
+#title {
     font-size: 15vw;
     font-family: "Lobster", cursive;
     margin: 0 0 25px 0;
 }
 
 h2 {
-    margin-bottom: 0px;
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
 }
 
 h4 {
@@ -64,20 +68,7 @@ h4 {
 }
 
 .orange-box h2 {
-    margin: 0;
     padding: 10px;
-}
-
-.red-box h3 {
-    margin: 0;
-}
-
-.green-box h3 {
-    margin: 0;
-}
-
-#result-label {
-    margin: 0;
 }
 
 .header-label {
@@ -126,6 +117,10 @@ h4 {
     display: none;
 }
 
+#flashcard-quiz-screen {
+    display: none;
+}
+
 .header-div {
     border-radius: 5px 5px 0 0;
     background-color: #f79722;
@@ -167,10 +162,6 @@ h4 {
     padding: 0px;
 }
 
-#flashcard-quiz-screen {
-    display: none;
-}
-
 #flashcard-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -198,7 +189,7 @@ h4 {
 }
 
 @media screen and (min-width: 500px) {
-    h1 {
+    #title {
         font-size: calc(0.15 * 500px);
     }
 }
