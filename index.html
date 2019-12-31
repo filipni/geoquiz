@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>GeoQuiz</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet"> 
+        <script src="data.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body onload="main()">
+        <div id="menu-screen" class="screen">
+            <h1 id="title">GeoQuiz!</h1>
+
+            <div id="main-menu-controls">
+                <div id="quiz-settings" class="orange-box">
+                    <div class="header-div">
+                        <h3 class="header-label">Inställningar</h3>
+                    </div>
+                    <div id="quiz-type-select"> 
+                        <div>
+                            <input type="radio" name="flashcards-select">
+                            <h4 class="radio-button-label">Glosor</h4>
+                        </div>
+
+                        <div>
+                            <input id="flashcards-radio" type="radio" name="flashcards-select">
+                            <h4 class="radio-button-label">Flashcards</h4>
+                        </div>
+                    </div>
+
+                    <div id="range-select">
+                            <h4 id="number-input-label">Intervall</h4>
+                            <input id="min-input" class="number-input" type="number" min="1" max="200" value="1">
+                            <input id="max-input" class="number-input" type="number" min="1" max="200" value="1">
+                    </div>
+                </div>
+
+                <div id="menu-buttons">
+                    <button id="capitals-button" class="button" onclick="quiz.capitalsButtonCallback(this)">Huvudstäder</button>
+                    <button id="countries-button" class="button" onclick="quiz.countriesButtonCallback(this)">Länder</button>
+                    <button id="flags-button" class="button" onclick="quiz.flagsButtonCallback(this)">Flaggor</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="orange-box">
+                <h2 id="question-label">...</h2>
+            </div>
+            <input id="answer-input" type="text">
+            <div id="result-label-wrapper">
+                <h3 id="result-label"></h3>
+            </div>
+            <button id="quit-button" class="button" onclick=quiz.quitButtonCallback(this)>Avsluta</button>
+        </div>
+
+        <div id="flashcard-quiz-screen" class="screen">
+            <img id="flag-img">
+            <div id="flashcards-question-label-div" class="orange-box">
+                <h2 id=flashcards-question-label></h2>
+            </div>
+            <div id="answer-label-wrapper" class="orange-box">
+                <h2 id="answer-label"></h2>
+            </div>
+            <div id="flashcard-buttons">
+                <button id="correct-button" class="button" onclick="quiz.correctButtonCallback(this)">Rätt</button>
+                <button id="wrong-button" class="button" onclick="quiz.incorrectButtonCallback(this)">Fel</button>
+                <button id="turn-card-button" class="button" onclick="quiz.turnCardButtonCallback(this)">Visa svar</button>
+            </div>
+            <button class="button" onclick=quiz.quitButtonCallback(this)>Avsluta</button>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <div class="orange-box">
+                <div class="header-div">
+                    <h3 class="header-label">Resultat</h3>
+                </div>
+                <h4 id="correct-label">Antal rätt: ...</h4>
+            </div>
+            <button id="retry-button" class="button" onclick=quiz.retryButtonCallback(this)>Träna på misstag</button>
+            <button id="main-menu-button" class="button" onclick="quiz.quitButtonCallback(this)">Huvudmeny</button>
+        </div>
+        
+    </body>
+</html>
