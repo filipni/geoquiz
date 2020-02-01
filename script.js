@@ -133,7 +133,7 @@ class QuizApp {
     }
 
     retryButtonCallback(button) {
-        let failedTasks = this.quiz.result.failedTasks;
+        let failedTasks = this.quiz.result.failedQuestions;
         this.resultLabelWrapper.style.padding = "0";
         this.createNewQuiz(Object.keys(failedTasks), Object.values(failedTasks), this.currentQuizScreen);
     }
@@ -215,7 +215,7 @@ class QuizApp {
         let result = this.quiz.result;
         this.correctLabel.textContent = "Antal rätt: " + result.numCorrectAnswers.toString() + " av " + this.numQuestions;
 
-        let noFailedTasks = Object.keys(result.failedTasks).length === 0;
+        let noFailedTasks = Object.keys(result.failedQuestions).length === 0;
         if (noFailedTasks)
             this.retryButton.style.display = "none";
         else
@@ -244,7 +244,7 @@ class QuizApp {
             return;
 
         let solution = this.quiz.currentQuestion + " - " + this.quiz.currentAnswer;
-        let answerWasCorrect = this.quiz.checkAnswer(this.answerInput.value.trim()); //TODO: Change name of checkAnswer to reflect that the function also fetches the next question.
+        let answerWasCorrect = this.quiz.giveAnswer(this.answerInput.value.trim()); //TODO: Change name of checkAnswer to reflect that the function also fetches the next question.
 
         if (answerWasCorrect) {
             this.resultLabel.textContent = "Korrekt!";
@@ -263,13 +263,13 @@ class QuizApp {
     }
 
     correctButtonCallback(button) {
-        this.quiz.checkAnswer(this.quiz.currentAnswer);
+        this.quiz.giveAnswer(this.quiz.currentAnswer);
         this.hideHint();
         this.updateQuizScreen();
     }
 
     incorrectButtonCallback(button) {
-        this.quiz.checkAnswer("incorrect");
+        this.quiz.giveAnswer("incorrect");
         this.hideHint();
         this.updateQuizScreen();
     }
@@ -287,12 +287,11 @@ class Quiz {
     constructor(questions, answers) {
         this.questions = questions.slice();
         this.answers = answers.slice();
-        this.numQuestions = questions.length;
 
-        this.failedTasks = {};
+        this.failedQuestions = {};
         this.numCorrectAnswers = 0;
 
-        this.goToNextTask();
+        this.fetchNextQuestion();
     }
 
     get currentQuestion() {
@@ -303,37 +302,28 @@ class Quiz {
         return this.answers[this.currentIndex];
     }
 
-    checkAnswer(answer) {
-        let currentAnswer = this.answers[this.currentIndex];
-        let answerIsCorrect = answer.toLowerCase() === currentAnswer.toLowerCase();
+    giveAnswer(answer) {
+        let answerIsCorrect = answer.toLowerCase() === this.currentAnswer.toLowerCase();
 
         if (answerIsCorrect)
-            this.correctAnswerGiven()
+            this.numCorrectAnswers++;
         else
-            this.incorrectAnswerGiven();
+            this.failedQuestions[this.currentQuestion] = this.currentAnswer;
 
         if (!this.isDone())
-            this.goToNextTask();
+            this.fetchNextQuestion();
 
         return answerIsCorrect;
     }
 
-    correctAnswerGiven() {
-        this.numCorrectAnswers++;
-    }
-
-    incorrectAnswerGiven() {
-        this.failedTasks[this.currentQuestion] = this.currentAnswer;
-    }
-
-    goToNextTask() {
+    fetchNextQuestion() {
         if (this.isDone())
             throw "No questions left.";
-        this.removeCurrentTask();
+        this.removeCurrentQuestion();
         this.currentIndex = randomInt(this.questions.length);
     }
 
-    removeCurrentTask() {
+    removeCurrentQuestion() {
         if (typeof this.currentIndex !== "undefined") {
             this.questions.splice(this.currentIndex, 1);
             this.answers.splice(this.currentIndex, 1);
@@ -350,7 +340,7 @@ class Quiz {
         
         return {
             numCorrectAnswers: this.numCorrectAnswers,
-            failedTasks: this.failedTasks
+            failedQuestions: this.failedQuestions
         }
     }
 }
