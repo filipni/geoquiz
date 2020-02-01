@@ -196,24 +196,24 @@ class QuizApp {
         this.currentQuestionNum++;
         document.title = appName + " " + this.currentQuestionNum + "/" + this.numQuestions;
 
-        if (this.quiz.isDone()) {
-            this.updateResultScreen();
-            if (this.isFlagQuiz || this.isFlashcardQuiz)
-                this.transitionTo(this.resultScreen);
-            else {
-                /* The transtion to the result screen is delayed for the word quiz, 
-                to give the user a chance to see the result from the last question */ 
-                this.answerInput.disabled = true;
-                this.quitButton.disabled = true;
-                this.delayedTransitionTo(this.resultScreen);
-            }
-        }
-        else {
+        if (this.quiz.isDone())
+            this.finishQuiz()
+        else 
             this.updateQuestion();
-        }
     }
 
-    
+    finishQuiz() {
+        this.updateResultScreen();
+        if (this.isFlagQuiz || this.isFlashcardQuiz)
+            this.transitionTo(this.resultScreen);
+        else {
+            /* The transtion to the result screen is delayed for the word quiz, 
+            to give the user a chance to see the result from the last question */ 
+            this.answerInput.disabled = true;
+            this.quitButton.disabled = true;
+            this.delayedTransitionTo(this.resultScreen);
+        }
+    } 
 
     delayedTransitionTo(screen) {
         setTimeout(this.transitionTo.bind(this, screen), 1500);
@@ -252,7 +252,7 @@ class QuizApp {
             return;
 
         let solution = this.quiz.currentQuestion + " - " + this.quiz.currentAnswer;
-        let answerWasCorrect = this.quiz.giveAnswer(this.answerInput.value.trim()); //TODO: Change name of checkAnswer to reflect that the function also fetches the next question.
+        let answerWasCorrect = this.quiz.giveAnswer(this.answerInput.value.trim());
 
         if (answerWasCorrect) {
             this.resultLabel.textContent = "Korrekt!";
