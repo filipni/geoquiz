@@ -133,9 +133,9 @@ class QuizApp {
     }
 
     retryButtonCallback(button) {
-        let failedTasks = this.quiz.result.failedQuestions;
         this.resultLabelWrapper.style.padding = "0";
-        this.createNewQuiz(Object.keys(failedTasks), Object.values(failedTasks), this.currentQuizScreen);
+        let failedQuestions = this.quiz.result.failedQuestions;
+        this.createNewQuiz(Object.keys(failedQuestions), Object.values(failedQuestions), this.currentQuizScreen);
     }
 
     turnCardButtonCallback(button) {
@@ -201,14 +201,22 @@ class QuizApp {
             if (this.isFlagQuiz || this.isFlashcardQuiz)
                 this.transitionTo(this.resultScreen);
             else {
+                /* The transtion to the result screen is delayed for the word quiz, 
+                to give the user a chance to see the result from the last question */ 
                 this.answerInput.disabled = true;
                 this.quitButton.disabled = true;
-                setTimeout(this.transitionTo.bind(this, this.resultScreen), 1500);
+                this.delayedTransitionTo(this.resultScreen);
             }
         }
         else {
             this.updateQuestion();
         }
+    }
+
+    
+
+    delayedTransitionTo(screen) {
+        setTimeout(this.transitionTo.bind(this, screen), 1500);
     }
 
     updateResultScreen() {
