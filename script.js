@@ -35,12 +35,12 @@ class QuizApp {
         this.flashcardQuestionLabelWrapper = document.getElementById("flashcards-question-label-div");
 
         // Range input
-        this.maxInput = document.getElementById("max-input");
-        this.maxInput.max = data.countries.length;
-        this.maxInput.addEventListener("input", this.maxInputHandler.bind(this));
+        this.startInput = document.getElementById("start-input");
+        this.startInput.addEventListener("input", this.startInputCallback.bind(this));
 
-        this.minInput = document.getElementById("min-input");
-        this.minInput.addEventListener("input", this.minInputHandler.bind(this));
+        this.stopInput = document.getElementById("stop-input");
+        this.stopInput.max = data.countries.length;
+        this.stopInput.addEventListener("input", this.stopInputCallback.bind(this));
         
         // Flag related stuff
         this.flagImg = document.getElementById("flag-img");
@@ -62,24 +62,24 @@ class QuizApp {
         return countries;
     }
 
-    maxInputHandler(e) {
+    startInputCallback(e) {
         let newVal = parseInt(e.target.value);
-        let min = parseInt(this.minInput.value);
-        if (newVal < min)
-            newVal = min;
-        else if (newVal > this.maxInput.max)
-            newVal = this.maxInput.max;
-        this.maxInput.value = newVal.toString();
-    }
-
-    minInputHandler(e) {
-        let newVal = parseInt(e.target.value);
-        let max = parseInt(this.maxInput.value);
+        let max = parseInt(this.stopInput.value);
         if (newVal > max)
             newVal = max;
-        else if (newVal < this.minInput.min)
-            newVal = this.minInput.min;
-        this.minInput.value = newVal.toString();
+        else if (newVal < this.startInput.min)
+            newVal = this.startInput.min;
+        this.startInput.value = newVal.toString();
+    }
+
+    stopInputCallback(e) {
+        let newVal = parseInt(e.target.value);
+        let min = parseInt(this.startInput.value);
+        if (newVal < min)
+            newVal = min;
+        else if (newVal > this.stopInput.max)
+            newVal = this.stopInput.max;
+        this.stopInput.value = newVal.toString();
     }
 
     capitalsButtonCallback(button) {
@@ -138,8 +138,8 @@ class QuizApp {
 
     getRange() {
         return {
-            min: parseInt(this.minInput.value),
-            max: parseInt(this.maxInput.value)
+            min: parseInt(this.startInput.value),
+            max: parseInt(this.stopInput.value)
         };
     }
 
