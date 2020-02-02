@@ -1,5 +1,8 @@
 appName = "GeoQuiz!";
 
+greenColor = "#78BC43";
+redColor = "#ff7871"; 
+
 function randomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -266,13 +269,11 @@ class QuizApp {
 
         if (answerWasCorrect) {
             this.resultLabel.textContent = "Korrekt!";
-            this.resultLabelWrapper.classList.remove("red-box");
-            this.resultLabelWrapper.classList.add("green-box");
+            this.resultLabelWrapper.style.backgroundColor = greenColor;
         }
         else {
             this.resultLabel.textContent = solution;
-            this.resultLabelWrapper.classList.remove("green-box");
-            this.resultLabelWrapper.classList.add("red-box");
+            this.resultLabelWrapper.style.backgroundColor = redColor;
         }
         this.showElement(this.resultLabelWrapper);
 

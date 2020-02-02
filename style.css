@@ -49,18 +49,8 @@ body {
     background-color: #fbc889;
     box-shadow: var(--drop-shadow);
     border-radius: 5px;
-}
-
-.red-box {
-    background-color: #ff7871;
-    box-shadow: var(--drop-shadow);
-    border-radius: 5px;
-}
-
-.green-box {
-    background-color: #78BC43;
-    box-shadow: var(--drop-shadow);
-    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .box-header-div {
@@ -93,7 +83,6 @@ body {
     justify-content: space-between;
     height: 131px;
     width: 226px;
-    margin: 0 auto;
     border-radius: 5px;
 }
 
@@ -135,7 +124,7 @@ body {
 
 #answer-input {
     font-size: 25px;
-    width: 100%;
+    width: 95%;
     max-width: 400px;
     padding: 8px;
     border: none;
@@ -150,9 +139,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 475;
-    margin-top: 25px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 475px;
 }
 
 #correct-button {
@@ -181,5 +170,24 @@ body {
 @media screen and (min-width: 500px) {
     #title {
         font-size: calc(0.15 * 500px);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .screen {
+        width: 100%;
+    }
+
+    #main-menu-controls {
+        flex-direction: column;
+    }
+
+    #quiz-settings {
+        margin-bottom: 15px;
+    }
+
+    #flashcard-buttons {
+        flex-direction: column;
+        height: 125px;
     }
 }
