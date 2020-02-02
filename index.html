@@ -12,8 +12,8 @@
 
             <div id="main-menu-controls">
                 <div id="quiz-settings" class="orange-box">
-                    <div class="header-div">
-                        <h3 class="header-label">Inställningar</h3>
+                    <div class="box-header-div">
+                        <h3>Inställningar</h3>
                     </div>
                     <div id="quiz-type-select"> 
                         <div>
@@ -44,7 +44,7 @@
 
         <div id="quiz-screen" class="screen">
             <div class="orange-box">
-                <h2 id="question-label">...</h2>
+                <h2 id="question-label" class="box-label">...</h2>
             </div>
             <input id="answer-input" type="text">
             <div id="result-label-wrapper">
@@ -56,10 +56,10 @@
         <div id="flashcard-quiz-screen" class="screen">
             <img id="flag-img">
             <div id="flashcards-question-label-div" class="orange-box">
-                <h2 id=flashcards-question-label></h2>
+                <h2 id=flashcards-question-label class="box-label"></h2>
             </div>
             <div id="hint-label-wrapper" class="orange-box">
-                <h2 id="hint-label"></h2>
+                <h2 id="hint-label" class="box-label"></h2>
             </div>
             <div id="flashcard-buttons">
                 <button id="correct-button" class="button" onclick="quiz.correctButtonCallback(this)">Rätt</button>
@@ -71,8 +71,8 @@
 
         <div id="result-screen" class="screen">
             <div class="orange-box">
-                <div class="header-div">
-                    <h3 class="header-label">Resultat</h3>
+                <div class="box-header-div">
+                    <h3>Resultat</h3>
                 </div>
                 <h4 id="correct-label">Antal rätt: ...</h4>
             </div>

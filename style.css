@@ -1,3 +1,7 @@
+:root {
+    --drop-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
+}
+
 body {
     background-color: #67a8c7; 
     text-align: center;
@@ -8,10 +12,6 @@ body {
     font-size: 15vw;
     font-family: "Lobster", cursive;
     margin: 0 0 25px 0;
-}
-
-h2 {
-    margin: 0;
 }
 
 h3 {
@@ -41,54 +41,50 @@ h4 {
 #quiz-settings {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
     height: 131px;
+    width: 226px;
     margin: 0 auto;
     border-radius: 5px;
-}
-
-.orange-box {
-    background-color: #fbc889;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
-    border-radius: 5px;
-}
-
-.red-box {
-    background-color: #ff7871;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.green-box {
-    background-color: #78BC43;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
-    border-radius: 5px;
-    padding: 10px
-}
-
-.orange-box h2 {
-    padding: 10px;
-}
-
-.header-label {
-    margin: 0;
-    padding: 5px;
 }
 
 #range-select {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   gap: 10px;
    padding-left: 15px;
    padding-right: 15px;
-   margin-bottom: 10px;
+   margin-bottom: 15px;
+}
+
+.orange-box {
+    background-color: #fbc889;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
+}
+
+.red-box {
+    background-color: #ff7871;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.green-box {
+    background-color: #78BC43;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
+    padding: 10px
+}
+
+.box-label {
+    margin: 0;
+    padding: 10px;
 }
 
 #quiz-type-select {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -109,19 +105,11 @@ h4 {
 }
 
 #quiz-screen {
-    display: none;
     gap: 20px;
 }
 
-#result-screen {
-    display: none;
-}
-
-#flashcard-quiz-screen {
-    display: none;
-}
-
-.header-div {
+.box-header-div {
+    padding: 5px;
     border-radius: 5px 5px 0 0;
     background-color: #f79722;
 }
@@ -136,7 +124,7 @@ h4 {
 
     border: none;
     border-radius: 5px;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
+    box-shadow: var(--drop-shadow);
 
     margin: 0 auto;
 }
@@ -155,7 +143,7 @@ h4 {
     max-width: 400px;
     padding: 8px;
     border: none;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
+    box-shadow: var(--drop-shadow);
 }
 
 #flashcard-buttons {
@@ -172,7 +160,7 @@ h4 {
 #flag-img {
     height: 120px;
     border-radius: 5px;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
