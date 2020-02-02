@@ -13,22 +13,22 @@
             <div id="main-menu-controls">
                 <div id="quiz-settings" class="orange-box">
                     <div class="box-header-div">
-                        <h3>Inställningar</h3>
+                        <h3 class="box-header">Inställningar</h3>
                     </div>
                     <div id="quiz-type-select"> 
                         <div>
                             <input id="words" type="radio" name="flashcards-select" checked="checked">
-                            <label for="words" class="radio-button-label">Glosor</label>
+                            <label for="words">Glosor</label>
                         </div>
 
                         <div>
                             <input id="flashcards-radio" type="radio" name="flashcards-select">
-                            <label for="flashcards-radio" class="radio-button-label">Flashcards</label>
+                            <label for="flashcards-radio">Flashcards</label>
                         </div>
                     </div>
 
                     <div id="range-select">
-                            <h4 id="number-input-label">Intervall</h4>
+                            <label for="start-input">Intervall</label>
                             <input id="start-input" class="number-input" type="number" min="1" max="200" value="1">
                             <input id="stop-input" class="number-input" type="number" min="1" max="200" value="1">
                     </div>
@@ -48,7 +48,7 @@
             </div>
             <input id="answer-input" type="text">
             <div id="result-label-wrapper">
-                <h3 id="result-label"></h3>
+                <h3 id="result-label" class="box-label"></h3>
             </div>
             <button id="quit-button" class="button" onclick=quiz.quitButtonCallback(this)>Avsluta</button>
         </div>
@@ -72,9 +72,9 @@
         <div id="result-screen" class="screen">
             <div class="orange-box">
                 <div class="box-header-div">
-                    <h3>Resultat</h3>
+                    <h3 class="box-header">Resultat</h3>
                 </div>
-                <h4 id="correct-label">Antal rätt: ...</h4>
+                <h4 id="num-correct-questions-label">Antal rätt: ...</h4>
             </div>
             <button id="retry-button" class="button" onclick=quiz.retryButtonCallback(this)>Träna på misstag</button>
             <button id="main-menu-button" class="button" onclick="quiz.quitButtonCallback(this)">Huvudmeny</button>

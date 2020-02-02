@@ -26,7 +26,7 @@ class QuizApp {
         this.hintLabel = document.getElementById("hint-label");
         this.hintLabel.toggled = false;
         this.wrongLabel = document.getElementById("wrong-label");
-        this.correctLabel = document.getElementById("correct-label");
+        this.numCorrectQuestionsLabel = document.getElementById("num-correct-questions-label");
         this.flashcardQuestionLabel = document.getElementById("flashcards-question-label");
 
         // Wrapper divs around labels
@@ -304,7 +304,7 @@ class QuizApp {
 
     updateResultScreen() {
         let result = this.quiz.result;
-        this.correctLabel.textContent = "Antal rätt: " + result.numCorrectAnswers.toString() + " av " + this.numQuestions;
+        this.numCorrectQuestionsLabel.textContent = "Antal rätt: " + result.numCorrectAnswers.toString() + " av " + this.numQuestions;
 
         let noFailedQuestions = Object.keys(result.failedQuestions).length === 0;
         if (noFailedQuestions)

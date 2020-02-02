@@ -2,7 +2,14 @@
     --drop-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
 body {
+    padding-top: 15px;
     background-color: #67a8c7; 
     text-align: center;
     font-family: "Robot", sans-serif;
@@ -14,104 +21,13 @@ body {
     margin: 0 0 25px 0;
 }
 
-h3 {
-    margin: 0;
-}
-
-h4 {
-    font-weight: normal;
-    margin: 0;
-}
-
 .screen {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-#main-menu-controls {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 35px;
-}
-
-#quiz-settings {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 131px;
-    width: 226px;
+    width: 500px;
     margin: 0 auto;
-    border-radius: 5px;
-}
-
-#range-select {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding-left: 15px;
-   padding-right: 15px;
-   margin-bottom: 15px;
-}
-
-.orange-box {
-    background-color: #fbc889;
-    box-shadow: var(--drop-shadow);
-    border-radius: 5px;
-}
-
-.red-box {
-    background-color: #ff7871;
-    box-shadow: var(--drop-shadow);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.green-box {
-    background-color: #78BC43;
-    box-shadow: var(--drop-shadow);
-    border-radius: 5px;
-    padding: 10px
-}
-
-.box-label {
-    margin: 0;
-    padding: 10px;
-}
-
-#quiz-type-select {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-#menu-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 0 auto;
-}
-
-.number-input {
-    width: 60px;
-    border: none;
-    background-color: #fcefe0;
-    border-radius: 5px;
-    padding: 7px;
-}
-
-#quiz-screen {
-    gap: 20px;
-}
-
-.box-header-div {
-    padding: 5px;
-    border-radius: 5px 5px 0 0;
-    background-color: #f79722;
+    align-items: center;
 }
 
 .button {
@@ -129,12 +45,92 @@ h4 {
     margin: 0 auto;
 }
 
-#correct-button {
-    background: linear-gradient(#C9E6B2, #78BC43);
+.orange-box {
+    background-color: #fbc889;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
 }
 
-#wrong-button {
-    background: linear-gradient(#f39B96, #f35047);
+.red-box {
+    background-color: #ff7871;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
+}
+
+.green-box {
+    background-color: #78BC43;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
+}
+
+.box-header-div {
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    background-color: #f79722;
+}
+
+.box-header {
+    font-weight: bold;
+}
+
+.box-label {
+    font-weight: bold;
+    margin: 0;
+    padding: 10px;
+}
+
+#main-menu-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 445px;
+}
+
+#quiz-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 131px;
+    width: 226px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+#quiz-type-select {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#range-select {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-bottom: 15px;
+}
+
+.number-input {
+    width: 60px;
+    border: none;
+    background-color: #fcefe0;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+#menu-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 128px;
+    margin: 0 auto;
+}
+
+#quiz-screen {
+    height: 230px;
 }
 
 #answer-input {
@@ -146,15 +142,25 @@ h4 {
     box-shadow: var(--drop-shadow);
 }
 
+#flashcards-question-label-div {
+    margin-bottom: 20px;
+}
+
 #flashcard-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: space-between;
+    width: 475;
     margin-top: 25px;
+    margin-bottom: 10px;
 }
 
-#flashcards-question-label-div {
-    margin-bottom: 20px;
+#correct-button {
+    background: linear-gradient(#C9E6B2, #78BC43);
+}
+
+#wrong-button {
+    background: linear-gradient(#f39B96, #f35047);
 }
 
 #flag-img {
@@ -164,12 +170,12 @@ h4 {
     margin-bottom: 20px;
 }
 
-#correct-label {
-    padding: 15px;
+#result-screen {
+    height: 175px;
 }
 
-.radio-button-label {
-    display: inline-block;
+#num-correct-questions-label {
+    padding: 15px;
 }
 
 @media screen and (min-width: 500px) {
