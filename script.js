@@ -23,14 +23,14 @@ class QuizApp {
         // Labels
         this.questionLabel = document.getElementById("question-label");
         this.resultLabel = document.getElementById("result-label");
-        this.answerLabel = document.getElementById("answer-label");
-        this.answerLabel.toggled = false;
+        this.hintLabel = document.getElementById("hint-label");
+        this.hintLabel.toggled = false;
         this.wrongLabel = document.getElementById("wrong-label");
         this.correctLabel = document.getElementById("correct-label");
         this.flashcardQuestionLabel = document.getElementById("flashcards-question-label");
 
         // Wrapper divs around labels
-        this.answerLabelWrapper = document.getElementById("answer-label-wrapper");
+        this.hintLabelWrapper = document.getElementById("hint-label-wrapper");
         this.resultLabelWrapper = document.getElementById("result-label-wrapper");
         this.flashcardQuestionLabelWrapper = document.getElementById("flashcards-question-label-div");
 
@@ -50,6 +50,7 @@ class QuizApp {
         // Radio buttons
         this.flashcardRadio = document.getElementById("flashcards-radio");
 
+        // Misc initialization
         this.resetQuiz();
     }
 
@@ -143,7 +144,7 @@ class QuizApp {
     }
 
     turnCardButtonCallback(button) {
-        if (this.answerLabel.toggled)
+        if (this.hintLabel.toggled)
             this.hideHint();
         else
             this.showHint();
@@ -161,19 +162,19 @@ class QuizApp {
 
     hideAnswers() {
         this.hideHint();
-        this.hideElement(this.answerLabelWrapper);
+        this.hideElement(this.hintLabelWrapper);
         this.hideElement(this.resultLabelWrapper);
     }
 
     hideHint() {
-        this.hideElement(this.answerLabelWrapper);
-        this.answerLabel.toggled = false;
+        this.hideElement(this.hintLabelWrapper);
+        this.hintLabel.toggled = false;
     }
 
     showHint() {
-        this.answerLabel.textContent = this.quiz.currentAnswer;
-        this.showElement(this.answerLabelWrapper);
-        this.answerLabel.toggled = true;
+        this.hintLabel.textContent = this.quiz.currentAnswer;
+        this.showElement(this.hintLabelWrapper);
+        this.hintLabel.toggled = true;
     }
 
     hideElement(elem) {
