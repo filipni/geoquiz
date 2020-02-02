@@ -135,16 +135,11 @@ class QuizApp {
         return array.slice(range.min-1, range.max);
     }
 
-    retryButtonCallback(button) {
-        this.hideAnswers();
-        let failedQuestions = this.quiz.result.failedQuestions;
-        this.createNewQuiz(Object.keys(failedQuestions), Object.values(failedQuestions), this.currentQuizScreen);
-    }
-
-    hideAnswers() {
-        this.hideHint();
-        this.hideElement(this.answerLabelWrapper);
-        this.hideElement(this.resultLabelWrapper);
+    getRange() {
+        return {
+            min: parseInt(this.minInput.value),
+            max: parseInt(this.maxInput.value)
+        };
     }
 
     turnCardButtonCallback(button) {
@@ -152,6 +147,22 @@ class QuizApp {
             this.hideHint();
         else
             this.showHint();
+    }
+
+    retryButtonCallback(button) {
+        this.hideAnswers();
+        let failedQuestions = this.quiz.result.failedQuestions;
+        this.createNewQuiz(Object.keys(failedQuestions), Object.values(failedQuestions), this.currentQuizScreen);
+    }
+
+    quitButtonCallback(button) {
+        this.resetQuiz();
+    }
+
+    hideAnswers() {
+        this.hideHint();
+        this.hideElement(this.answerLabelWrapper);
+        this.hideElement(this.resultLabelWrapper);
     }
 
     hideHint() {
@@ -165,15 +176,19 @@ class QuizApp {
         this.answerLabel.toggled = true;
     }
 
-    quitButtonCallback(button) {
-        this.hideAnswers();
-        this.resetQuiz();
+    hideElement(elem) {
+        elem.style.display = "none";
+    }
+
+    showElement(elem) {
+        elem.style.display = "inline";
     }
 
     resetQuiz() {
         document.title = appName;
         this.isFlagQuiz = false;
         this.isFlashcardQuiz = false;
+        this.hideAnswers();
         this.transitionTo(this.menuScreen);
     }
 
@@ -206,15 +221,12 @@ class QuizApp {
         this.answerInput.focus();
     }
 
-    getRange() {
-        return {
-            min: parseInt(this.minInput.value),
-            max: parseInt(this.maxInput.value)
-        };
-    }
-
-    updateTitle() {
-        document.title = appName + " " + this.currentQuestionNum + "/" + this.numQuestions;
+    transitionTo(screen) {
+        this.menuScreen.style.display = "none";
+        this.quizScreen.style.display = "none";
+        this.flashcardScreen.style.display = "none";
+        this.resultScreen.style.display = "none";
+        screen.style.display = "flex";
     }
 
     updateQuizScreen() {
@@ -229,40 +241,8 @@ class QuizApp {
             this.updateQuestion();
     }
 
-    finishQuiz() {
-        this.updateResultScreen();
-        if (this.isFlagQuiz || this.isFlashcardQuiz)
-            this.transitionTo(this.resultScreen);
-        else {
-            /* The transtion to the result screen is delayed for the word quiz, 
-            to give the user a chance to see the result from the last question */ 
-            this.answerInput.disabled = true;
-            this.quitButton.disabled = true;
-            this.delayedTransitionTo(this.resultScreen);
-        }
-    } 
-
-    delayedTransitionTo(screen) {
-        setTimeout(this.transitionTo.bind(this, screen), 1500);
-    }
-
-    updateResultScreen() {
-        let result = this.quiz.result;
-        this.correctLabel.textContent = "Antal rätt: " + result.numCorrectAnswers.toString() + " av " + this.numQuestions;
-
-        let noFailedQuestions = Object.keys(result.failedQuestions).length === 0;
-        if (noFailedQuestions)
-            this.hideElement(this.retryButton);
-        else
-            this.showElement(this.retryButton);
-    }
-
-    hideElement(elem) {
-        elem.style.display = "none";
-    }
-
-    showElement(elem) {
-        elem.style.display = "inline";
+    updateTitle() {
+        document.title = appName + " " + this.currentQuestionNum + "/" + this.numQuestions;
     }
 
     updateQuestion() {
@@ -308,12 +288,32 @@ class QuizApp {
         this.updateQuizScreen();
     }
 
-    transitionTo(screen) {
-        this.menuScreen.style.display = "none";
-        this.quizScreen.style.display = "none";
-        this.flashcardScreen.style.display = "none";
-        this.resultScreen.style.display = "none";
-        screen.style.display = "flex";
+    finishQuiz() {
+        this.updateResultScreen();
+        if (this.isFlagQuiz || this.isFlashcardQuiz)
+            this.transitionTo(this.resultScreen);
+        else {
+            /* The transtion to the result screen is delayed for the word quiz, 
+            to give the user a chance to see the result from the last question */ 
+            this.answerInput.disabled = true;
+            this.quitButton.disabled = true;
+            this.delayedTransitionTo(this.resultScreen);
+        }
+    } 
+
+    updateResultScreen() {
+        let result = this.quiz.result;
+        this.correctLabel.textContent = "Antal rätt: " + result.numCorrectAnswers.toString() + " av " + this.numQuestions;
+
+        let noFailedQuestions = Object.keys(result.failedQuestions).length === 0;
+        if (noFailedQuestions)
+            this.hideElement(this.retryButton);
+        else
+            this.showElement(this.retryButton);
+    }
+
+    delayedTransitionTo(screen) {
+        setTimeout(this.transitionTo.bind(this, screen), 1500);
     }
 }
 
