@@ -208,12 +208,12 @@ class QuizApp {
         this.updateQuestion();
 
         if (this.isFlagQuiz) {
-            this.showElement(this.flagImg);
-            this.hideElement(this.flashcardQuestionLabelWrapper);
+            this.flagImg.style.display = "inline";
+            this.flashcardQuestionLabelWrapper.style.display = "none";
         }
         else if (this.isFlashcardQuiz) {
-            this.showElement(this.flashcardQuestionLabelWrapper);
-            this.hideElement(this.flagImg);
+            this.flashcardQuestionLabelWrapper.style.display = "inline";
+            this.flagImg.style.display = "none";
         }
 
         this.answerInput.disabled = false;
