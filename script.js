@@ -181,11 +181,11 @@ class QuizApp {
     }
 
     hideElement(elem) {
-        elem.style.display = "none";
+        elem.style.visibility = "hidden";
     }
 
     showElement(elem) {
-        elem.style.display = "inline";
+        elem.style.visibility = "visible";
     }
 
     resetQuiz() {
